@@ -85,6 +85,16 @@
   .card li {
     margin-bottom: 0.25rem;
   }
+  .card li.rate {
+    list-style: none;
+    margin-left: -1.25rem;
+  }
+  .stars {
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .stars .on { color: #f5b301; }
+  .stars .off { color: #cfcfcf; }
   .card li.ref {
     list-style: none;
     margin-left: -1.25rem;
@@ -2119,12 +2129,12 @@
 <h3>Оценки</h3>
 <ul>
 <ul>
-<li><strong>Пропекание:</strong> 5</li>
-<li><strong>Плотность:</strong> 7</li>
-<li><strong>Сладость:</strong> 8</li>
-<li><strong>Терпкость:</strong> 4</li>
-<li><strong>Свежесть:</strong> 1</li>
-<li><strong>Энергия:</strong> 8</li>
+<li class="rate"><strong>Пропекание:</strong> <span class="stars" title="5 из 10" aria-label="5 из 10"><span class="on">★★★★★</span><span class="off">★★★★★</span></span></li>
+<li class="rate"><strong>Плотность:</strong> <span class="stars" title="7 из 10" aria-label="7 из 10"><span class="on">★★★★★★★</span><span class="off">★★★</span></span></li>
+<li class="rate"><strong>Сладость:</strong> <span class="stars" title="8 из 10" aria-label="8 из 10"><span class="on">★★★★★★★★</span><span class="off">★★</span></span></li>
+<li class="rate"><strong>Терпкость:</strong> <span class="stars" title="4 из 10" aria-label="4 из 10"><span class="on">★★★★</span><span class="off">★★★★★★</span></span></li>
+<li class="rate"><strong>Свежесть:</strong> <span class="stars" title="1 из 10" aria-label="1 из 10"><span class="on">★</span><span class="off">★★★★★★★★★</span></span></li>
+<li class="rate"><strong>Энергия:</strong> <span class="stars" title="8 из 10" aria-label="8 из 10"><span class="on">★★★★★★★★</span><span class="off">★★</span></span></li>
 </ul>
 </ul></div>
 </article>
