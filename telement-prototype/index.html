@@ -62,7 +62,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="logo"><img src="https://t-element.rs/wp-content/uploads/2025/02/cropped-T_element_logo-02-1-600x141.png" alt="t.element"></div>
+    <div class="logo"><img src="assets/logo-horizontal.png" alt="t.element"></div>
     <div class="langs" id="langs"></div>
   </header>
   <div class="proto" data-t="proto"></div>
@@ -136,7 +136,7 @@ function qrSVG(text){if(typeof qrcode==="undefined")return `<div class="muted">Q
 function nextGoal(){const c=REWARDS.map(r=>r.cost).find(c=>c>S.points)||REWARDS[REWARDS.length-1].cost;return c}
 const V={
  login(){
-  const top=`<img class="mark" src="https://t-element.rs/wp-content/uploads/2025/02/T_element_logo-01-1.png" alt="t.element">`;
+  const top=`<img class="mark" src="assets/logo-square.png" alt="t.element">`;
   if(S.step=="phone")return `<div class="login">${top}<h1>${t("welcome")}</h1><p class="muted">${t("login_hint")}</p>
    <input id="ph" type="tel" placeholder="+381 6x xxx xxxx" value="+381 ">
    <button class="btn" onclick="sendCode()">${t("get_code")}</button></div>`;
