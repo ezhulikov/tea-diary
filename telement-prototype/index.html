@@ -62,6 +62,11 @@
   .more{font-size:13px;color:var(--accent);font-weight:600;margin-top:8px;display:inline-block}
   .desc{font-size:14px;line-height:1.5;color:#464646;margin:10px 0 4px;white-space:pre-line}
   .open .media{height:260px}
+  .weights{display:flex;gap:6px;margin:12px 0 10px}
+  .weights button{flex:1;border:1px solid var(--line);background:#fff;border-radius:4px;padding:8px 0;font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer}
+  .weights button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;text-align:right}
+  a.btn{text-align:center;text-decoration:none}
   .plus{color:#00a901;font-weight:600}.minus{color:#ab2e31;font-weight:600}
 </style>
 </head>
@@ -129,32 +134,34 @@ const EVENTS=[
    en:"Aged shu and sheng puer with live music.\nOn the table: Xia Guan Mogu Shu 2022 and Liu Bao 2010.\nBring a friend, seating is at a shared table."}}
 ];
 const TEAS=[
- {id:"t1",img:"assets/tea-beo.jpg",name:"Шу пуэр БЕО",ru:"Shu Puer BEO",price:"800 din",type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
+ {id:"t1",img:"assets/tea-beo.jpg",name:"Шу пуэр БЕО",ru:"Shu Puer BEO",vars:[[50,9915,800],[100,9916,1600]],type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
   desc:{ru:"Шу пуэр 2022 года от фабрики Тун Чин Тан, спрессован специально для нашей чайной в блинчик 100 г. Мэнхайский древесно-ореховый профиль с необычными минеральными нотами. Настой плотный, скорее сухой, чем маслянистый. Отличный пуэр на каждый день.",
    sr:"Šu puer iz 2022. fabrike Tong Čing Tang, presovan samo za našu čajdžinicu u pogačicu od 100 g. Menghaj drvenasto orašasti profil sa neobičnim mineralnim notama. Gust napitak, više suv nego uljast. Odličan puer za svaki dan.",
    en:"2022 shu puer from the Tong Qing Tang factory, pressed exclusively for us into a 100 g cake. Classic Menghai woody nutty profile with unusual mineral notes. Dense, more dry than oily. A great everyday puer."}},
- {id:"t2",img:"assets/tea-brutal-white.jpg",name:"Brutalistea",ru:"Белый прессованный",price:"900 din",type:{ru:"белый чай",sr:"beli čaj",en:"white tea"},
+ {id:"t2",img:"assets/tea-brutal-white.jpg",name:"Brutalistea",ru:"Белый прессованный",vars:[[50,9909,900],[100,9910,1800]],type:{ru:"белый чай",sr:"beli čaj",en:"white tea"},
   desc:{ru:"Выдержанный Шоу Мэй фабрики Ли Да из листьев Да Бай Хао, сбор 2018 года, округ Фудин. Тёплый цветочно-медовый аромат с лёгкими древесными нотками. Вкус мягкий и сладкий. Для неспешных вечерних чаепитий.",
    sr:"Odležali Šou Mej fabrike Li Da od listova Da Baj Hao, berba 2018, okrug Fuding. Topla cvetno medena aroma sa blagim drvenastim notama. Ukus mek i sladak. Za spore večernje čajanke.",
    en:"Aged Shou Mei from the Li Da factory, Da Bai Hao leaves picked in 2018 in Fuding. Warm floral honey aroma with light woody notes. Soft and sweet. Made for slow evening sessions."}},
- {id:"t3",img:"assets/tea-brutal-shu.jpg",name:"Цзинь Я Шу Brutalistea, 2021",ru:"Jin Ya Shu",price:"1200 din",type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
+ {id:"t3",img:"assets/tea-brutal-shu.jpg",name:"Цзинь Я Шу Brutalistea, 2021",ru:"Jin Ya Shu",vars:[[50,9903,1200],[100,9904,2400],[250,9905,6000]],type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
   desc:{ru:"Шу пуэр от бренда Пань Лун, спрессован специально для нашей чайной. Много чайных почек, поэтому вкус мягкий и глубокий. Древесно-сухофруктовые ноты переходят в сладко-сливочное послевкусие. Даёт ровную бодрость.",
    sr:"Šu puer brenda Pan Long, presovan samo za nas. Puno čajnih pupoljaka daje mekoću i dubinu. Drvenaste note i suvo voće prelaze u slatko kremast završetak. Daje ujednačenu budnost.",
    en:"Shu puer from Pan Long, pressed exclusively for us. Lots of buds give it softness and depth. Woody dried fruit notes turn into a sweet creamy finish. Steady, even energy."}},
- {id:"t4",img:"assets/tea-adria.jpg",name:"MonTeAdria",ru:"Травяной купаж",price:"1100 din",type:{ru:"травяной",sr:"biljni",en:"herbal"},
+ {id:"t4",img:"assets/tea-adria.jpg",name:"MonTeAdria",ru:"Травяной купаж",vars:[[50,9875,1100],[100,9876,2200],[250,9877,5500]],type:{ru:"травяной",sr:"biljni",en:"herbal"},
   desc:{ru:"Травяной купаж на ферментированной основе. Душица и чабрец дают тёплый пряный характер, розмарин добавляет свежую хвойную ноту склонов Адриатики. Первоцвет и лепестки граната завершают композицию.",
    sr:"Biljna mešavina na fermentisanoj osnovi. Origano i majčina dušica daju topao začinski karakter, ruzmarin svežu četinarsku notu jadranskih padina. Jaglac i latice nara zaokružuju kompoziciju.",
    en:"Herbal blend on a fermented base. Oregano and thyme bring warm spice, rosemary adds a fresh piney note of the Adriatic slopes. Primrose and pomegranate petals finish it off."}},
- {id:"t5",img:"assets/tea-liubao.jpg",name:"Хей Ча Лю Бао, 2010",ru:"Hei Cha Liu Bao",price:"1200 din",type:{ru:"тёмный чай",sr:"tamni čaj",en:"dark tea"},
+ {id:"t5",img:"assets/tea-liubao.jpg",name:"Хей Ча Лю Бао, 2010",ru:"Hei Cha Liu Bao",vars:[[50,9836,1200],[100,9837,2400],[250,9838,6000]],type:{ru:"тёмный чай",sr:"tamni čaj",en:"dark tea"},
   desc:{ru:"Тёмный постферментированный чай из провинции Гуанси. Аромат старого дерева, листьев, лесных грибов и морских водорослей. Настой очень густой, бархатистый.",
    sr:"Tamni postfermentisani čaj iz provincije Guangsi. Aroma starog drveta, lišća, šumskih pečuraka i morskih algi. Napitak veoma gust i baršunast.",
    en:"Dark post fermented tea from Guangxi. Aroma of old wood, leaves, forest mushrooms and seaweed. Very thick, velvety liquor."}}
 ];
-const OPEN={};
+const OPEN={},SEL={};
+const SHOP="https://t-element.rs/checkout-2/?add-to-cart=";
+function pick(ev,id,i){ev.stopPropagation();SEL[id]=i;render()}
 function tog(id){OPEN[id]=!OPEN[id];render()}
-Object.assign(T.ru,{more:"Подробнее",less:"Свернуть"});
-Object.assign(T.sr,{more:"Detaljnije",less:"Zatvori"});
-Object.assign(T.en,{more:"More",less:"Less"});
+Object.assign(T.ru,{more:"Подробнее",less:"Свернуть",order:"Заказать",g:"г"});
+Object.assign(T.sr,{more:"Detaljnije",less:"Zatvori",order:"Naruči",g:"g"});
+Object.assign(T.en,{more:"More",less:"Less",order:"Order",g:"g"});
 const KEY="telement_proto_v1";
 let S=JSON.parse(localStorage.getItem(KEY)||"null")||{lang:"ru",phone:null,points:120,booked:{},notify:false,history:[{k:"purchase",v:120,d:"03.11"}],tab:"home",step:"phone"};
 const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
@@ -196,9 +203,14 @@ const V={
    <div class="row" style="margin:8px 0 12px"><span class="muted">${t("seats_left")}: ${left} ${t("of")} ${e.seats}</span><span class="pill">${e.price} · ${t("pay_cash")}</span></div>
    ${mine?`<div class="row"><b style="color:var(--ink)">✓ ${t("signed")}</b><button class="btn small ghost" onclick="book('${e.id}',false)">${t("cancel")}</button></div>`
      :`<button class="btn" ${left<=0?"disabled":""} onclick="book('${e.id}',true)">${left<=0?t("full"):t("signup")}</button>`}</div>`}).join("")},
- teas(){return `<h1>${t("new_in")}</h1>`+TEAS.map(x=>{const o=!!OPEN[x.id];return `<div class="card tea tap ${o?"open":""}" onclick="tog('${x.id}')"><div class="media"><img src="${x.img}" alt=""></div>
-   <div class="row"><span class="pill">${L(x.type)}</span><span class="muted">${x.price}</span></div><h3>${x.name}</h3><div class="ru">${x.ru}</div>
-   ${o?`<div class="desc">${L(x.desc)}</div>`:""}<span class="more">${o?t("less")+" ▴":t("more")+" ▾"}</span></div>`}).join("")+
+ teas(){return `<h1>${t("new_in")}</h1>`+TEAS.map(x=>{const o=!!OPEN[x.id],si=SEL[x.id]||0,v=x.vars[si],href=SHOP+v[1];
+   const btn=cls=>`<a class="btn ${cls}" href="${href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t("order")}</a>`;
+   return `<div class="card tea tap ${o?"open":""}" onclick="tog('${x.id}')"><div class="media"><img src="${x.img}" alt=""></div>
+   <div class="row" style="align-items:flex-start"><div><span class="pill">${L(x.type)}</span><h3>${x.name}</h3><div class="ru">${x.ru}</div></div>
+    <div class="side"><span class="muted">${v[2]} din / ${v[0]} ${t("g")}</span>${o?"":btn("small")}</div></div>
+   ${o?`<div class="desc">${L(x.desc)}</div>
+   <div class="weights">${x.vars.map((w,i)=>`<button class="${i==si?"on":""}" onclick="pick(event,'${x.id}',${i})">${w[0]} ${t("g")} · ${w[2]}</button>`).join("")}</div>
+   ${btn("")}`:""}<span class="more">${o?t("less")+" ▴":t("more")+" ▾"}</span></div>`}).join("")+
   `<button class="btn ${S.notify?"ghost":""}" onclick="toggleNotify()">${S.notify?"✓ "+t("notify_on"):t("notify")}</button>`}
 };
 function sendCode(){const v=document.getElementById("ph").value.replace(/\s/g,"");if(v.length<9){toast(t("phone"));return}S.pending=v;S.step="code";save();render()}
