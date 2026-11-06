@@ -56,6 +56,12 @@
   body.out header .logo{visibility:hidden}
   .history div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
   .history div:last-child{border:0}
+  .media{margin:-18px -18px 14px;height:170px;overflow:hidden;border-radius:4px 4px 0 0;background:#f4f4f4}
+  .media img{width:100%;height:100%;object-fit:cover;display:block}
+  .tap{cursor:pointer}
+  .more{font-size:13px;color:var(--accent);font-weight:600;margin-top:8px;display:inline-block}
+  .desc{font-size:14px;line-height:1.5;color:#464646;margin:10px 0 4px;white-space:pre-line}
+  .open .media{height:260px}
   .plus{color:#00a901;font-weight:600}.minus{color:#ab2e31;font-weight:600}
 </style>
 </head>
@@ -109,17 +115,46 @@ const REWARDS=[
  {id:"cer",cost:400,name:{ru:"Чайная церемония на двоих",sr:"Čajna ceremonija za dvoje",en:"Tea ceremony for two"}}
 ];
 const EVENTS=[
- {id:"e1",date:{ru:"Пт, 14 ноября, 19:00",sr:"Pet, 14. novembar, 19:00",en:"Fri, Nov 14, 19:00"},title:{ru:"Дегустация юньнаньских красных чаёв",sr:"Degustacija crvenih čajeva iz Junana",en:"Yunnan red tea tasting"},price:"1200 din",seats:10,taken:6},
- {id:"e2",date:{ru:"Сб, 22 ноября, 17:00",sr:"Sub, 22. novembar, 17:00",en:"Sat, Nov 22, 17:00"},title:{ru:"Мастер-класс: гунфу ча для начинающих",sr:"Radionica: gongfu ča za početnike",en:"Workshop: gongfu cha for beginners"},price:"1500 din",seats:8,taken:8},
- {id:"e3",date:{ru:"Вс, 30 ноября, 18:00",sr:"Ned, 30. novembar, 18:00",en:"Sun, Nov 30, 18:00"},title:{ru:"Вечер пуэров и живой музыки",sr:"Veče puera i žive muzike",en:"Puer and live music evening"},price:"1000 din",seats:14,taken:3}
+ {id:"e1",img:"assets/ev-red.jpg",date:{ru:"Пт, 14 ноября, 19:00",sr:"Pet, 14. novembar, 19:00",en:"Fri, Nov 14, 19:00"},title:{ru:"Дегустация юньнаньских красных чаёв",sr:"Degustacija crvenih čajeva iz Junana",en:"Yunnan red tea tasting"},price:"1200 din",seats:10,taken:6,
+  desc:{ru:"Попробуем пять красных чаёв из Юньнани: от медовых почек до плотного дяньхуна.\nВедущий: Арслан.\nДлительность около 2 часов. Чай и сладости включены в цену.",
+   sr:"Probaćemo pet crvenih čajeva iz Junana: od medenih pupoljaka do punog dianhonga.\nVodi: Arslan.\nTraje oko 2 sata. Čaj i slatkiši su uključeni u cenu.",
+   en:"We will taste five Yunnan red teas, from honeyed buds to a full bodied Dian Hong.\nHost: Arslan.\nAbout 2 hours. Tea and sweets included."}},
+ {id:"e2",img:"assets/ev-gongfu.jpg",date:{ru:"Сб, 22 ноября, 17:00",sr:"Sub, 22. novembar, 17:00",en:"Sat, Nov 22, 17:00"},title:{ru:"Мастер-класс: гунфу ча для начинающих",sr:"Radionica: gongfu ča za početnike",en:"Workshop: gongfu cha for beginners"},price:"1500 din",seats:8,taken:8,
+  desc:{ru:"Научимся заваривать чай в гайвани и чайнике: пропорции, температура, время проливов.\nКаждый участник работает за своим набором посуды.\nДлительность около 2,5 часа.",
+   sr:"Naučićemo da pripremamo čaj u gaivanu i čajniku: proporcije, temperatura, vreme naliva.\nSvaki učesnik radi sa svojim priborom.\nTraje oko 2,5 sata.",
+   en:"Learn to brew in a gaiwan and a teapot: ratios, water temperature, steep times.\nEveryone gets their own tea set.\nAbout 2.5 hours."}},
+ {id:"e3",img:"assets/ev-puer.jpg",date:{ru:"Вс, 30 ноября, 18:00",sr:"Ned, 30. novembar, 18:00",en:"Sun, Nov 30, 18:00"},title:{ru:"Вечер пуэров и живой музыки",sr:"Veče puera i žive muzike",en:"Puer and live music evening"},price:"1000 din",seats:14,taken:3,
+  desc:{ru:"Пьём выдержанные шу и шэн пуэры под живую музыку.\nВ программе Ся Гуань Могу Шу 2022 и Лю Бао 2010.\nМожно прийти с другом, места за общим столом.",
+   sr:"Pijemo odležale šu i šen puere uz živu muziku.\nU programu Sja Guan Mogu Šu 2022 i Liu Bao 2010.\nMožete doći sa prijateljem, mesta su za zajedničkim stolom.",
+   en:"Aged shu and sheng puer with live music.\nOn the table: Xia Guan Mogu Shu 2022 and Liu Bao 2010.\nBring a friend, seating is at a shared table."}}
 ];
 const TEAS=[
- {name:"Ma Tai Lao Shu Jin Ya",ru:"Ма Тай Лао Шу Цзинь Я",type:{ru:"красный",sr:"crveni",en:"red"}},
- {name:"Fei Zi Xiao",ru:"Фэй Цзы Сяо",type:{ru:"красный",sr:"crveni",en:"red"}},
- {name:"Hei Cha",ru:"Хэй Ча",type:{ru:"тёмный чай",sr:"tamni čaj",en:"dark tea"}},
- {name:"Bai Lin Gong Fu Hong Cha",ru:"Байлинь Гунфу Хун Ча",type:{ru:"красный",sr:"crveni",en:"red"}},
- {name:"Alishan Jin Xuan",ru:"Алишань Цзинь Сюань",type:{ru:"улун",sr:"ulong",en:"oolong"}}
+ {id:"t1",img:"assets/tea-beo.jpg",name:"Шу пуэр БЕО",ru:"Shu Puer BEO",price:"800 din",type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
+  desc:{ru:"Шу пуэр 2022 года от фабрики Тун Чин Тан, спрессован специально для нашей чайной в блинчик 100 г. Мэнхайский древесно-ореховый профиль с необычными минеральными нотами. Настой плотный, скорее сухой, чем маслянистый. Отличный пуэр на каждый день.",
+   sr:"Šu puer iz 2022. fabrike Tong Čing Tang, presovan samo za našu čajdžinicu u pogačicu od 100 g. Menghaj drvenasto orašasti profil sa neobičnim mineralnim notama. Gust napitak, više suv nego uljast. Odličan puer za svaki dan.",
+   en:"2022 shu puer from the Tong Qing Tang factory, pressed exclusively for us into a 100 g cake. Classic Menghai woody nutty profile with unusual mineral notes. Dense, more dry than oily. A great everyday puer."}},
+ {id:"t2",img:"assets/tea-brutal-white.jpg",name:"Brutalistea",ru:"Белый прессованный",price:"900 din",type:{ru:"белый чай",sr:"beli čaj",en:"white tea"},
+  desc:{ru:"Выдержанный Шоу Мэй фабрики Ли Да из листьев Да Бай Хао, сбор 2018 года, округ Фудин. Тёплый цветочно-медовый аромат с лёгкими древесными нотками. Вкус мягкий и сладкий. Для неспешных вечерних чаепитий.",
+   sr:"Odležali Šou Mej fabrike Li Da od listova Da Baj Hao, berba 2018, okrug Fuding. Topla cvetno medena aroma sa blagim drvenastim notama. Ukus mek i sladak. Za spore večernje čajanke.",
+   en:"Aged Shou Mei from the Li Da factory, Da Bai Hao leaves picked in 2018 in Fuding. Warm floral honey aroma with light woody notes. Soft and sweet. Made for slow evening sessions."}},
+ {id:"t3",img:"assets/tea-brutal-shu.jpg",name:"Цзинь Я Шу Brutalistea, 2021",ru:"Jin Ya Shu",price:"1200 din",type:{ru:"шу пуэр",sr:"šu puer",en:"shu puer"},
+  desc:{ru:"Шу пуэр от бренда Пань Лун, спрессован специально для нашей чайной. Много чайных почек, поэтому вкус мягкий и глубокий. Древесно-сухофруктовые ноты переходят в сладко-сливочное послевкусие. Даёт ровную бодрость.",
+   sr:"Šu puer brenda Pan Long, presovan samo za nas. Puno čajnih pupoljaka daje mekoću i dubinu. Drvenaste note i suvo voće prelaze u slatko kremast završetak. Daje ujednačenu budnost.",
+   en:"Shu puer from Pan Long, pressed exclusively for us. Lots of buds give it softness and depth. Woody dried fruit notes turn into a sweet creamy finish. Steady, even energy."}},
+ {id:"t4",img:"assets/tea-adria.jpg",name:"MonTeAdria",ru:"Травяной купаж",price:"1100 din",type:{ru:"травяной",sr:"biljni",en:"herbal"},
+  desc:{ru:"Травяной купаж на ферментированной основе. Душица и чабрец дают тёплый пряный характер, розмарин добавляет свежую хвойную ноту склонов Адриатики. Первоцвет и лепестки граната завершают композицию.",
+   sr:"Biljna mešavina na fermentisanoj osnovi. Origano i majčina dušica daju topao začinski karakter, ruzmarin svežu četinarsku notu jadranskih padina. Jaglac i latice nara zaokružuju kompoziciju.",
+   en:"Herbal blend on a fermented base. Oregano and thyme bring warm spice, rosemary adds a fresh piney note of the Adriatic slopes. Primrose and pomegranate petals finish it off."}},
+ {id:"t5",img:"assets/tea-liubao.jpg",name:"Хей Ча Лю Бао, 2010",ru:"Hei Cha Liu Bao",price:"1200 din",type:{ru:"тёмный чай",sr:"tamni čaj",en:"dark tea"},
+  desc:{ru:"Тёмный постферментированный чай из провинции Гуанси. Аромат старого дерева, листьев, лесных грибов и морских водорослей. Настой очень густой, бархатистый.",
+   sr:"Tamni postfermentisani čaj iz provincije Guangsi. Aroma starog drveta, lišća, šumskih pečuraka i morskih algi. Napitak veoma gust i baršunast.",
+   en:"Dark post fermented tea from Guangxi. Aroma of old wood, leaves, forest mushrooms and seaweed. Very thick, velvety liquor."}}
 ];
+const OPEN={};
+function tog(id){OPEN[id]=!OPEN[id];render()}
+Object.assign(T.ru,{more:"Подробнее",less:"Свернуть"});
+Object.assign(T.sr,{more:"Detaljnije",less:"Zatvori"});
+Object.assign(T.en,{more:"More",less:"Less"});
 const KEY="telement_proto_v1";
 let S=JSON.parse(localStorage.getItem(KEY)||"null")||{lang:"ru",phone:null,points:120,booked:{},notify:false,history:[{k:"purchase",v:120,d:"03.11"}],tab:"home",step:"phone"};
 const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
@@ -154,12 +189,16 @@ const V={
   REWARDS.map(r=>`<div class="card reward row"><div><h3>${L(r.name)}</h3><span class="pill">${r.cost} ${t("pts")}</span></div>
    <button class="btn small" ${S.points<r.cost?"disabled":""} onclick="redeem('${r.id}')">${S.points<r.cost?t("not_enough"):t("redeem")}</button></div>`).join("")+
   `<h2>${t("history")}</h2><div class="card history">${S.history.slice().reverse().map(h=>`<div><span>${h.d} · ${t(h.k)}</span><span class="${h.v>0?"plus":"minus"}">${h.v>0?"+":""}${h.v}</span></div>`).join("")}</div>`},
- events(){return `<h1>${t("events")}</h1>`+EVENTS.map(e=>{const mine=!!S.booked[e.id],taken=e.taken+(mine?1:0),left=e.seats-taken;
-  return `<div class="card event"><div class="date">${L(e.date)}</div><h3>${L(e.title)}</h3>
+ events(){return `<h1>${t("events")}</h1>`+EVENTS.map(e=>{const mine=!!S.booked[e.id],taken=e.taken+(mine?1:0),left=e.seats-taken,o=!!OPEN[e.id];
+  return `<div class="card event ${o?"open":""}"><div class="tap" onclick="tog('${e.id}')"><div class="media"><img src="${e.img}" alt=""></div>
+   <div class="date">${L(e.date)}</div><h3>${L(e.title)}</h3>
+   ${o?`<div class="desc">${L(e.desc)}</div>`:""}<span class="more">${o?t("less")+" ▴":t("more")+" ▾"}</span></div>
    <div class="row" style="margin:8px 0 12px"><span class="muted">${t("seats_left")}: ${left} ${t("of")} ${e.seats}</span><span class="pill">${e.price} · ${t("pay_cash")}</span></div>
    ${mine?`<div class="row"><b style="color:var(--ink)">✓ ${t("signed")}</b><button class="btn small ghost" onclick="book('${e.id}',false)">${t("cancel")}</button></div>`
      :`<button class="btn" ${left<=0?"disabled":""} onclick="book('${e.id}',true)">${left<=0?t("full"):t("signup")}</button>`}</div>`}).join("")},
- teas(){return `<h1>${t("new_in")}</h1>`+TEAS.map(x=>`<div class="card tea"><span class="pill">${L(x.type)}</span><h3>${x.name}</h3><div class="ru">${x.ru}</div></div>`).join("")+
+ teas(){return `<h1>${t("new_in")}</h1>`+TEAS.map(x=>{const o=!!OPEN[x.id];return `<div class="card tea tap ${o?"open":""}" onclick="tog('${x.id}')"><div class="media"><img src="${x.img}" alt=""></div>
+   <div class="row"><span class="pill">${L(x.type)}</span><span class="muted">${x.price}</span></div><h3>${x.name}</h3><div class="ru">${x.ru}</div>
+   ${o?`<div class="desc">${L(x.desc)}</div>`:""}<span class="more">${o?t("less")+" ▴":t("more")+" ▾"}</span></div>`}).join("")+
   `<button class="btn ${S.notify?"ghost":""}" onclick="toggleNotify()">${S.notify?"✓ "+t("notify_on"):t("notify")}</button>`}
 };
 function sendCode(){const v=document.getElementById("ph").value.replace(/\s/g,"");if(v.length<9){toast(t("phone"));return}S.pending=v;S.step="code";save();render()}
