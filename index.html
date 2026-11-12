@@ -126,7 +126,7 @@
   <h1>Чайный дневник</h1>
   <p>Дегустации и заметки о чае</p>
   <div class="search-wrap">
-    <input id="search" type="text" placeholder="Поиск по названию, типу, региону...">
+    <input id="search" type="text" placeholder="Поиск по всему тексту: название, вкус, заметки...">
   </div>
 </header>
 <div class="count" id="count"></div>
@@ -2145,11 +2145,17 @@
   const input = document.getElementById('search');
   const cards = Array.from(document.querySelectorAll('.card'));
   const count = document.getElementById('count');
+  const norm = t => t.toLowerCase().replace(/ё/g, 'е');
+  // full text of each card: fields plus everything visible on the card
+  cards.forEach(c => { c._text = norm(c.dataset.search + ' ' + c.textContent); });
+  // crude Russian stemming: drop a common ending so "сладкий" also finds "сладкая", "сладковатый"
+  const ENDINGS = /(ями|ами|ого|его|ому|ему|ыми|ими|ость|ий|ый|ой|ая|яя|ое|ее|ые|ие|ую|юю|ом|ем|ах|ях|ов|ев|ам|ям|а|я|ы|и|о|е|у|ю|ь)$/;
+  const stem = w => (w.length > 4 ? w.replace(ENDINGS, '') : w);
   function update() {
-    const q = input.value.trim().toLowerCase();
+    const words = norm(input.value).split(/[^a-zа-я0-9]+/i).filter(Boolean).map(stem);
     let visible = 0;
     cards.forEach(c => {
-      const match = !q || c.dataset.search.includes(q);
+      const match = !words.length || words.every(w => c._text.includes(w));
       c.style.display = match ? '' : 'none';
       if (match) visible++;
     });
